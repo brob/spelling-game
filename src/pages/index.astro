@@ -2,8 +2,25 @@
 import { Game } from '@base/components/Game';
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { XataClient } from "@base/xata";
 
-const {records} = await fetch('http://localhost:4321/api/allWords.json').then(res => res.json());
+const xata = new XataClient({
+    apiKey: import.meta.env.XATA_API_KEY,
+    branch: import.meta.env.XATA_BRANCH,
+  });
+
+  const {records} = await xata.db.WordList.select([
+    "xata_id",
+    "Grade level",
+    "definition",
+    "part of speech",
+    "sentence",
+    "word",
+  ]).getPaginated({
+    pagination: {
+      size: 70,
+    },
+  })
 const wordList = records
 
 
