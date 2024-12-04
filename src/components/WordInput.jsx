@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { readWord } from '@base/utils/readWord';
 
-export function WordInput({word, setWord, getWord, setScore, setHistory}) {
-    const [success, setSuccess] = useState(null)
+export function WordInput({word, setWord, getWord, setScore, setHistory, success, setSuccess}) {
+
     function wordCheck(event) {
         event.preventDefault()
         const input = event.target[0].value

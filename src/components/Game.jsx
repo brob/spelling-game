@@ -42,6 +42,7 @@ function HistoryButton({ history }) {
 export function Game({wordList}) {
     const [score, setScore] = useState(0)
     const [word, setWord] = useState('')
+    const [success, setSuccess] = useState(null)
     const [history, setHistory] = useState([])
     useEffect(() => {
         handleRead(word.word)
@@ -59,25 +60,28 @@ export function Game({wordList}) {
     }
     return (
         <div className="game-board bg-gray-100 p-6 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-4">Game</h1>
-            <h2 className="score text-2xl font-bold mb-4">Score: {score}</h2>
+            <div className="flex justify-between">
+                <h2 className="score text-2xl font-bold mb-4">Score: {score}</h2>
+                {history && <HistoryButton history={history} />}
+
+            </div>
             {!word && <button className="get-word-button bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" onClick={getWord}>Get Word</button>}
-            {word && <h2 className="text-xl mb-4">{word.word}</h2>}
             {word && (
                 <div className="word-card bg-white p-4 rounded-lg shadow-md mb-4">
                     <h3 className="text-lg font-bold mb-2">Definition</h3>
                     <p className="mb-2">{word.definition}</p>
-                    <h3 className="text-lg font-bold mb-2">Grade Level</h3>
-                    <p className="mb-4">{word["grade level"]}</p>
-                    <WordInput setHistory={setHistory} setScore={setScore} word={word} setWord={setWord} getWord={getWord} />
+                    <h3 className="text-lg font-bold mb-2">Grade Level: {word["Grade level"]}</h3>
+                    
 
-                    <button onClick={() => handleRead(word.sentence)} className="read-sentence-button bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 mr-2">
+
+                    <WordInput setSuccess={setSuccess} success={success} setHistory={setHistory} setScore={setScore} word={word} setWord={setWord} getWord={getWord} />
+                    { !success && <div className="mt-6"><button onClick={() => handleRead(word.sentence)} className="read-sentence-button bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 mr-2">
                         Read a Sentence
                     </button>
                     <button onClick={() => handleRead(word.word)} className="replay-word-button bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-700">
                         Replay Word
-                    </button>
-                    {history && <HistoryButton history={history} />}
+                    </button></div>}
+                    
                 </div>
             )}
 
