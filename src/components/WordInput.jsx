@@ -5,8 +5,8 @@ export function WordInput({word, setWord, getWord, setScore, setHistory, success
 
     function wordCheck(event) {
         event.preventDefault()
-        const input = event.target[0].value
-        const isRight = input === word.word
+        const input = event.target[0].value.toLowerCase()
+        const isRight = input === word.word.toLowerCase()
         const score = isRight ? 1 : 0
         setScore((prevScore) => prevScore + score)
         console.log(isRight)
