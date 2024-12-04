@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://demos-sdn99q.us-east-1.xata.sh/db/words",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

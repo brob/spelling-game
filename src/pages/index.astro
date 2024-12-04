@@ -1,11 +1,43 @@
 ---
+import { Game } from '@base/components/Game';
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+
+const {records} = await fetch('http://localhost:4321/api/allWords.json').then(res => res.json());
+const wordList = records
+
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+
+	<h1 class="text-6xl font-bold text-center text-blue-500 mb-4 bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">Spelling Game 0.0.1</h1>
+
+	<p>Click the button below, get your word to spell</p>
+
+	<Game client:idle wordList={wordList} />
 </Layout>
+
+
+<script define:vars={{wordList}}>
+// const synth = window.speechSynthesis;
+
+// 	const button = document.querySelector('button');
+// 	button.addEventListener('click', async (e) => {
+// 		e.preventDefault();
+
+
+
+// 		const number = Math.floor(Math.random() * wordList.length);
+// 		console.log(wordList)
+// 		console.log({number})
+// 		const word = wordList[number];
+// 		console.log(word);
+// const synth = window.speechSynthesis;
+
+// 		const utterThis = new SpeechSynthesisUtterance(word.word);
+// 		synth.speak(utterThis);
+// 	});
+</script>

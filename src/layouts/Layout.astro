@@ -8,7 +8,15 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<slot />
+
+		<div class="bg-gradient-to-br from-blue-500 to-pink-500 min-h-screen">
+		
+			<div class="flex items-center justify-center min-h-screen">
+				<div class="bg-white p-12 rounded shadow-lg">
+					<slot />
+				</div>
+			</div>
+	</div>
 	</body>
 </html>
 

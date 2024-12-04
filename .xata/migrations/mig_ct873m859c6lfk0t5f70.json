@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_ct873m859c6lfk0t5f70",
+    "operations": [
+      {
+        "rename_table": {
+          "to": "WordList",
+          "from": "WordList-Sheet11"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_ct873m859c6lfk0t5f70",
+  "parent": "mig_ct873go59c6lfk0t5f60",
+  "schema": "public",
+  "startedAt": "2024-12-04T15:14:33.582925Z"
+}
